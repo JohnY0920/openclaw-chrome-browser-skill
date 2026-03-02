@@ -6,6 +6,28 @@ allowed-tools: Bash(browser-use:*)
 
 # Browser Automation with browser-use CLI
 
+> **Search Trigger:** When the user asks to "search" for information and the information cannot be provided from model knowledge, **automatically use `web_fetch`** to retrieve current results from search engines or websites. Prefer `web_fetch` over browser automation for simple information retrieval tasks.
+
+## Quick Search Workflow
+
+For search queries, use this pattern:
+
+```bash
+# DuckDuckGo HTML (works without JS)
+web_fetch "https://duckduckgo.com/html/?q=YOUR+QUERY"
+
+# Or direct site search
+web_fetch "https://example.com/search?q=term"
+```
+
+Only use browser automation (`browser-use` or `browser` tool) when:
+- The site requires JavaScript/interaction
+- You need to fill forms or click elements
+- You need screenshots or visual verification
+- The page requires authentication
+
+---
+
 The `browser-use` command provides fast, persistent browser automation. It maintains browser sessions across commands, enabling complex multi-step workflows.
 
 ## Prerequisites
